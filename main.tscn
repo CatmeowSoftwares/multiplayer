@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://bmtgmeweo1uj1"]
+
+[ext_resource type="Script" uid="uid://r4nltx0lpaya" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://6jbnefhd7wdj" path="res://chat.gd" id="1_ig7tw"]
+
+[node name="Main" type="Node2D" unique_id=208231970]
+script = ExtResource("1_0xm2m")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=2023778685]
+
+[node name="GUI" type="Control" parent="UI" unique_id=309109058]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 139.0
+offset_top = 120.0
+offset_right = 179.0
+offset_bottom = 160.0
+
+[node name="Chat" type="Control" parent="UI/GUI" unique_id=2027712954]
+anchors_preset = 0
+script = ExtResource("1_ig7tw")
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/GUI/Chat" unique_id=921048560]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 185.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/GUI/Chat/PanelContainer" unique_id=1935072579]
+layout_mode = 2
+alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/GUI/Chat/PanelContainer/VBoxContainer" unique_id=19865451]
+custom_minimum_size = Vector2(200, 150)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/GUI/Chat/PanelContainer/VBoxContainer/ScrollContainer" unique_id=835770083]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="UI/GUI/Chat/PanelContainer/VBoxContainer" unique_id=1121783823]
+layout_mode = 2
+
+[connection signal="text_submitted" from="UI/GUI/Chat/PanelContainer/VBoxContainer/LineEdit" to="UI/GUI/Chat" method="_on_line_edit_text_submitted"]
