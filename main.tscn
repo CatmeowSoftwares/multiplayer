@@ -2,6 +2,11 @@
 
 [ext_resource type="Script" uid="uid://r4nltx0lpaya" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://6jbnefhd7wdj" path="res://chat.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://c3qxfvn67cdcm" path="res://player.gd" id="3_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://qh7ik1d88h0x" path="res://icon.svg" id="4_lquwl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
+size = Vector2(128, 128)
 
 [node name="Main" type="Node2D" unique_id=208231970]
 script = ExtResource("1_0xm2m")
@@ -39,5 +44,16 @@ layout_mode = 2
 
 [node name="LineEdit" type="LineEdit" parent="UI/GUI/Chat/PanelContainer/VBoxContainer" unique_id=1121783823]
 layout_mode = 2
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=730711211]
+script = ExtResource("3_1bvp3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=816953235]
+texture = ExtResource("4_lquwl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=233960224]
+shape = SubResource("RectangleShape2D_7mycd")
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1263823661]
 
 [connection signal="text_submitted" from="UI/GUI/Chat/PanelContainer/VBoxContainer/LineEdit" to="UI/GUI/Chat" method="_on_line_edit_text_submitted"]

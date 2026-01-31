@@ -14,18 +14,18 @@ func _ready():
 	user = randi_range(41, 67)
 func _process(delta: float) -> void:
 	stream.poll()
-	
-	var r = stream.get_available_bytes()
-	if r > 0:
-		print("data!!!!")
-		var d = stream.get_data(r)[1]
-		var string := ""
-		for x in d:
-			if x == 0: continue
-			string += char(x)
-		print(string)
-		chat_send(string)
-	
+	if stream.get_status() == StreamPeerSocket.Status.STATUS_CONNECTED:
+		var r = stream.get_available_bytes()
+		if r > 0:
+			print("data!!!!")
+			var d = stream.get_data(r)[1]
+			var string := ""
+			for x in d:
+				if x == 0: continue
+				string += char(x)
+			print(string)
+			chat_send(string)
+		
 
 func send(message: String):
 	var data = message.to_utf8_buffer()
