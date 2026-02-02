@@ -3,19 +3,13 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
-var udp = PacketPeerUDP.new()
 var connected = false
 
-func _ready():
-	udp.connect_to_host("127.0.0.1", 8080)
 func _process(delta):
 	if !connected:
 		pass
 		# Try to contact server
-		#udp.put_packet("meow :3".to_utf8_buffer())
-	if udp.get_available_packet_count() > 0:
-		print("Connected: %s" % udp.get_packet().get_string_from_utf8())
-		connected = true
+	
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
